@@ -18,7 +18,7 @@ const app = express();
 app.use(express.json());
 const allowedOrigins = [
   'http://localhost:3000',
-  'https://your-netlify-site.netlify.app' // ← update this
+  'https://anushkacrm.netlify.app' // ← update this
 ];
 
 app.use(cors({
