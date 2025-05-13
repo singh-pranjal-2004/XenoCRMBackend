@@ -131,11 +131,3 @@ backend/
 3. Commit your changes
 4. Push to the branch
 5. Create a Pull Request
-
-## 📝 License
-
-MIT License - feel free to use this project for your own purposes!
-
----
-
-> **Ready to power your CRM with a robust backend? Start exploring the API endpoints!** 
