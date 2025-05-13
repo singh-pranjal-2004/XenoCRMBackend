@@ -42,14 +42,14 @@ mongoose.connect(process.env.MONGODB_URI)
 
 // Routes
 app.use('/auth', require('./routes/auth'));
-app.use('/api/customers', require('./routes/customers'));
-app.use('/api/campaigns', require('./routes/campaigns'));
-app.use('/api/orders', require('./routes/orders'));
-app.use('/api/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
-app.use('/api/vendor', require('./routes/vendor'));
-app.use('/api/receipts', require('./routes/receipts'));
-app.use('/api/audience-segments', require('./routes/audienceSegments'));
-app.use('/api/ai', require('./routes/ai'));
+app.use('/customers', require('./routes/customers'));
+app.use('/campaigns', require('./routes/campaigns'));
+app.use('/orders', require('./routes/orders'));
+app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+app.use('/vendor', require('./routes/vendor'));
+app.use('/receipts', require('./routes/receipts'));
+app.use('/audience-segments', require('./routes/audienceSegments'));
+app.use('/ai', require('./routes/ai'));
 
 // Error handling middleware
 app.use((err, req, res, next) => {
