@@ -1,0 +1,96 @@
+openapi: 3.0.0
+info:
+  title: XenoCRM Data Ingestion API
+  version: 1.0.0
+  description: Secure APIs for ingesting customers and orders data (pub-sub architecture)
+servers:
+  - url: http://localhost:5000/api
+paths:
+  /customers:
+    post:
+      summary: Ingest customer data
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                firstName:
+                  type: string
+                lastName:
+                  type: string
+                email:
+                  type: string
+                  format: email
+                phone:
+                  type: string
+                company:
+                  type: string
+                tags:
+                  type: array
+                  items:
+                    type: string
+                customFields:
+                  type: object
+              required:
+                - firstName
+                - lastName
+                - email
+      responses:
+        '202':
+          description: Customer data accepted for ingestion
+        '400':
+          description: Validation error
+        '401':
+          description: Unauthorized
+  /orders:
+    post:
+      summary: Ingest order data
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                orderId:
+                  type: string
+                customerId:
+                  type: string
+                amount:
+                  type: number
+                items:
+                  type: array
+                  items:
+                    type: object
+                status:
+                  type: string
+                  enum: [pending, completed, cancelled]
+                orderDate:
+                  type: string
+                  format: date-time
+              required:
+                - orderId
+                - customerId
+                - amount
+                - items
+                - status
+                - orderDate
+      responses:
+        '202':
+          description: Order data accepted for ingestion
+        '400':
+          description: Validation error
+        '401':
+          description: Unauthorized
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT 
